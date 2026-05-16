@@ -1,5 +1,8 @@
 package com.M3Tours.empresas.Controller;
 
-public class EmpresaController {
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+public class EmpresaController {
+    
 }

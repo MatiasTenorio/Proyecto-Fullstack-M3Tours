@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.M3Tours.empresas.DTO.EmpresaDTO;
 import com.M3Tours.empresas.Model.Empresa;
 import com.M3Tours.empresas.Repository.EmpresaRepository;
 
@@ -38,13 +39,23 @@ public class EmpresaService {
         return repository.findByRutEmpresa(rutEmpresa);
     }
 
-    // VVVVVVV EN PROGRESO VVVVVVV
-    public Empresa save(Empresa e){
-        return repository.save(e);
+    public Empresa save(EmpresaDTO DTO){
+        Empresa empresa = new Empresa();
+        empresa.setNombreEmpresa(DTO.getNombreEmpresa());
+        empresa.setRutEmpresa(DTO.getRutEmpresa());
+        empresa.setNumeroEmpresa(DTO.getNumeroEmpresa());
+        empresa.setRazonSocial(DTO.getRazonSocial());
+
+        Empresa empresaSave = repository.save(empresa);
+        return empresaSave;
     }
 
-    public Boolean delete(Empresa e){ 
-        repository.delete(e);
+    public Empresa guardar(Empresa empresa){
+        return repository.save(empresa);
+    }
+
+    public Boolean delete(Integer id){ 
+        repository.delete(repository.findById(id).get());
         return true;
     }
 }
