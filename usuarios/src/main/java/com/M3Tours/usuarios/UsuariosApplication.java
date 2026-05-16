@@ -1,13 +1,13 @@
-package com.M3Tours.empresas;
+package com.M3Tours.usuarios;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EmpresasApplication {
+public class UsuariosApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EmpresasApplication.class, args);
+		SpringApplication.run(UsuariosApplication.class, args);
 	}
 
 }
