@@ -3,9 +3,7 @@ package com.M3Tours.empresas.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import com.M3Tours.empresas.DTO.EmpresaDTO;
 import com.M3Tours.empresas.Model.Empresa;
@@ -18,10 +16,6 @@ import jakarta.transaction.Transactional;
 public class EmpresaService {
     @Autowired
     private EmpresaRepository repository;
-
-    @Autowired
-    @Qualifier("WebClientConfig")
-    private WebClient webClient;
 
     public List<Empresa> findAll(){
         return repository.findAll();
