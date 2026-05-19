@@ -1,6 +1,7 @@
 package com.M3Tours.empresas.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class EmpresaController {
         return ResponseEntity.ok("Empresa añadida con exito.");
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Integer id) {
         if (service.delete(id)){
             return ResponseEntity.ok("Empresa eliminada con exito");
@@ -39,14 +40,18 @@ public class EmpresaController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con ID " + id + " No encontrada.");
     }
 
-    @GetMapping("/{id}")
+    @GetMapping
     public ResponseEntity<List<Empresa>> getAll() {
         return ResponseEntity.ok(service.findAll());
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Empresa> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok(service.findById(id));
+    public ResponseEntity<?> getById(@PathVariable Integer id) {
+        Optional<Empresa> responseService = service.findById(id);
+        if (responseService.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con ID " + id + " No encontrada.");
+        }
+        return ResponseEntity.ok(responseService.get());
     }
 
     @GetMapping("/nombre/{nombre}")
