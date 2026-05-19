@@ -26,11 +26,11 @@ public class EmpresaService {
         return repository.findById(id);
     }
 
-    public Empresa findByNombre(String nombre){
+    public Optional<Empresa> findByNombre(String nombre){
         return repository.findByNombreEmpresa(nombre);
     }
 
-    public Empresa findByRut(String rutEmpresa){
+    public Optional<Empresa> findByRut(String rutEmpresa){
         return repository.findByRutEmpresa(rutEmpresa);
     }
 

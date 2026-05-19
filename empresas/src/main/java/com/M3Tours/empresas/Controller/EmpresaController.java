@@ -49,18 +49,26 @@ public class EmpresaController {
     public ResponseEntity<?> getById(@PathVariable Integer id) {
         Optional<Empresa> responseService = service.findById(id);
         if (responseService.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con ID " + id + " No encontrada.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con ID '" + id + "'' No encontrada.");
         }
         return ResponseEntity.ok(responseService.get());
     }
 
     @GetMapping("/nombre/{nombre}")
-    public ResponseEntity<Empresa> getByNombre(@PathVariable String nombre) {
-        return ResponseEntity.ok(service.findByNombre(nombre));
+    public ResponseEntity<?> getByNombre(@PathVariable String nombre) {
+        Optional<Empresa> responseService = service.findByNombre(nombre);
+        if (responseService.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con nombre '" + nombre + "'' No encontrada.");
+        }
+        return ResponseEntity.ok(responseService.get());
     }
 
     @GetMapping("/rut/{rutEmpresa}")
-    public ResponseEntity<Empresa> getByRut(@PathVariable String rutEmpresa) {
-        return ResponseEntity.ok(service.findByRut(rutEmpresa));
+    public ResponseEntity<?> getByRut(@PathVariable String rutEmpresa) {
+        Optional<Empresa> responseService = service.findByRut(rutEmpresa);
+        if (responseService.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con RUT '" + rutEmpresa + "'' No encontrada.");
+        }
+        return ResponseEntity.ok(responseService.get());
     }
 }
