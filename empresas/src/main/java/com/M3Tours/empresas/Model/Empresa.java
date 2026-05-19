@@ -20,10 +20,10 @@ public class Empresa {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="nombre_empresa", nullable=false)
+    @Column(name="nombre_empresa", nullable=false, unique=true)
     private String nombreEmpresa;
 
-    @Column(name="rut_empresa", nullable=false, length=10)
+    @Column(name="rut_empresa", nullable=false, length=10, unique=true)
     private String rutEmpresa;
     
     @Column(name="numero_empresa", nullable=false, length=15)

@@ -43,12 +43,11 @@ public class EmpresaService {
         Empresa empresaSave = repository.save(empresa);
         return empresaSave;
     }
-
-    public Empresa guardar(Empresa empresa){
-        return repository.save(empresa);
-    }
-
+    
     public Boolean delete(Integer id){ 
+        if (repository.findById(id).isEmpty()){
+            return false;
+        }
         repository.delete(repository.findById(id).get());
         return true;
     }
