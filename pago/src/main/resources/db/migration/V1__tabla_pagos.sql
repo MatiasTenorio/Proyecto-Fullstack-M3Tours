@@ -1,4 +1,4 @@
-CREATE TABLE pago (
+CREATE TABLE pagos (
     id Integer PRIMARY KEY AUTO_INCREMENT,
     orden_compra Integer NOT NULL,
     usuario_id Integer NOT NULL,
