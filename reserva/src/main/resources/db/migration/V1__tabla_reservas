@@ -1,6 +1,7 @@
 CREATE TABLE reservas (
-    id Integer PRIMARY KEY AUTO_INCREMENT,
-    tour_id Integer NOT NULL,
-    numero_asiento VARCHAR(50) NOT NULL
+    id                  integer         not null auto_increment,
+    tour_id             integer,
+    numero_asiento      varchar(50),
+    primary key (id)
 );
  
