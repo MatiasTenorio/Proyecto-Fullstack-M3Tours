@@ -1,4 +1,6 @@
-package com.M3Tours.categoria.Model;
+package com.M3Tours.itinerarios.Model;
+
+import java.time.LocalTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,22 +13,34 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "categorias")
+@Table(name = "itinerarios")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Categoria {
+public class Itinerario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nombre", nullable = false, unique = true)
-    private String nombre;
+    @Column(name = "tour_id")
+    private Integer tourId;
+
+    @Column(name = "destino_id")
+    private Integer destinoId;
+
+    @Column(name = "dia", nullable = false)
+    private Integer dia;
 
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "estado", nullable = false)
-    private String estado;
+    @Column(name = "hora_inicio")
+    private LocalTime horaInicio;
+
+    @Column(name = "hora_fin")
+    private LocalTime horaFin;
+
+    @Column(name = "lugar", nullable = false)
+    private String lugar;
 }
