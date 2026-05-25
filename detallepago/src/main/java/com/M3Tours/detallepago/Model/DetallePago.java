@@ -20,28 +20,28 @@ public class DetallePago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
  
-    @Column(name = "numero_boleta")
+    @Column(name = "numero_boleta", nullable=false)
     private String numeroBoleta;
  
-    @Column(name = "tipo_pago")
+    @Column(name = "tipo_pago", nullable=false)
     private String tipoPago;
  
-    @Column(name = "estado")
+    @Column(name = "estado", nullable=false)
     private String estado;
  
-    @Column(name = "nombre_tour")
+    @Column(name = "nombre_tour", nullable=false)
     private String nombreTour;
  
-    @Column(name = "numero_asiento")
+    @Column(name = "numero_asiento", nullable=false)
     private String numeroAsiento;
  
-    @Column(name = "subtotal")
+    @Column(name = "subtotal", nullable=false)
     private Double subtotal;
  
-    @Column(name = "impuesto")
+    @Column(name = "impuesto", nullable=false)
     private Double impuesto;
  
-    @Column(name = "total")
+    @Column(name = "total", nullable=false)
     private Double total;
  
 }
