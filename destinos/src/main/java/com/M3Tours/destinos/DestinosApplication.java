@@ -1,13 +1,13 @@
-package com.M3Tours.detallepago;
+package com.M3Tours.destinos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DetallepagoApplication {
+public class DestinosApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DetallepagoApplication.class, args);
+		SpringApplication.run(DestinosApplication.class, args);
 	}
 
 }
