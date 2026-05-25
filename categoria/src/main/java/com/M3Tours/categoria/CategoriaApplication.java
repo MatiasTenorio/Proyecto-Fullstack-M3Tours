@@ -1,13 +1,13 @@
-package com.M3Tours.destinos;
+package com.M3Tours.categoria;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DestinosApplication {
+public class CategoriaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DestinosApplication.class, args);
+		SpringApplication.run(CategoriaApplication.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.M3Tours.destinos.Model;
+package com.M3Tours.categoria.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,28 +11,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "destinos")
+@Table(name = "categorias")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Destino {
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, unique = true)
     private String nombre;
-
-    @Column(name = "pais", nullable = false)
-    private String pais;
-
-    @Column(name = "ciudad", nullable = false)
-    private String ciudad;
 
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "imagen_url")
-    private String imagenUrl;
+    @Column(name = "estado", nullable = false)
+    private String estado;
 }

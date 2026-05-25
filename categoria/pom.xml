@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.M3Tours</groupId>
-	<artifactId>destinos</artifactId>
+	<artifactId>categoria</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
