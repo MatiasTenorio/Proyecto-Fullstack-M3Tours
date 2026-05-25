@@ -24,16 +24,16 @@ public class Pago {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="orden_compra")
+    @Column(name="orden_compra", nullable=false)
     private Integer ordenCompra;
 
-    @Column(name="usuario_id")
+    @Column(name="usuario_id", nullable=false)
     private Integer usuarioId;
 
-    @Column(name="reserva_id")
+    @Column(name="reserva_id", nullable=false)
     private Integer reservaId;
 
-    @Column(name="costo")
+    @Column(name="costo", nullable=false)
     private Double costo;
 
     @Column(name="fecha_pago")
