@@ -1,10 +1,10 @@
-package com.M3Tours.categoria;
+package com.M3Tours.itinerarios;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CategoriaApplicationTests {
+class ItinerariosApplicationTests {
 
 	@Test
 	void contextLoads() {
