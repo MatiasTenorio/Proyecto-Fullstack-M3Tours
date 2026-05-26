@@ -1,4 +1,4 @@
-create table usuario (
+create table usuarios (
     id                  integer             not null auto_increment,
     usuario             varchar(255)        not null,
     nombre              varchar(255)        not null,
