@@ -36,6 +36,11 @@ Asegurarse de trabajar en la rama correspondiente:
 Si se va a desarrollar o cambiar algo dentro del microservicio "empresas", hacer el "git switch (rama correspondiente)".
 Hacer los commits desde respectiva rama.
 
+Para levantar todos los microservicios:
+- Abrir una terminal PowerShell.
+- Posicionarse en la raiz del proyecto
+- Ejecutar el comando ".\LevantarMicroservicio.ps1"
+
 ## Desarrollo del proyecto
 
 * Repostiorio creado directamente desde github y poseriormente clonado dentro de VSC.
