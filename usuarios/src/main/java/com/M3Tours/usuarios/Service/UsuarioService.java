@@ -50,7 +50,7 @@ public class UsuarioService {
     }
 
     public Optional<Usuario> findByNombre(String nombre){
-        return repository.findByNombre(nombre);
+        return repository.findByNombreUsuario(nombre);
     }
 
     public Optional<Usuario> findByRut(String RUT){
