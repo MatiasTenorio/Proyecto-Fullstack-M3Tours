@@ -12,10 +12,8 @@ import com.M3Tours.usuarios.Model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
-    // ✅ Coincide exactamente con el atributo "nombreUsuario" del Model
     Optional<Usuario> findByNombreUsuario(String nombreUsuario);
 
-    // ✅ Query nativa corregida — faltaba WHERE y el alias
     @Query(value = "SELECT * FROM usuarios WHERE rut = :rut", nativeQuery = true)
     Optional<Usuario> findByRut(@Param("rut") String rut);
 }
