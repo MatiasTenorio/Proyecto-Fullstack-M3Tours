@@ -24,11 +24,11 @@ public class PagoService {
     @Autowired
     private PagoRepository repository;
     @Autowired
-    @Qualifier("WebClienteUsuarios")
-    private WebClient webClienteUsuarios;
+    @Qualifier("WebClientUsuarios")
+    private WebClient webClientUsuarios;
     @Autowired
-    @Qualifier("WebClienteReservas")
-    private WebClient webClienteReservas;
+    @Qualifier("WebClientReservas")
+    private WebClient webClientReservas;
 
     public List<Pago> findAll(){
         return repository.findAll();
