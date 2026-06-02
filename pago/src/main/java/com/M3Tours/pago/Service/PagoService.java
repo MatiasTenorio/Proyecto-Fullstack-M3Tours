@@ -35,7 +35,7 @@ public class PagoService {
     }
     
     public boolean save(PagoDTO pagoDTO) {
-        UsuarioDTO usuario = webClienteUsuarios.get()
+        UsuarioDTO usuario = webClientUsuarios.get()
                 .uri("/usuarios/{id}", pagoDTO.getUsuarioId()) 
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, response -> 
@@ -45,7 +45,7 @@ public class PagoService {
         if (usuario == null) {
             return false;
         }
-        ReservaDTO reserva = webClienteReservas.get()
+        ReservaDTO reserva = webClientReservas.get()
                 .uri("/reservas/{id}", pagoDTO.getReservaId())
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, response -> 
