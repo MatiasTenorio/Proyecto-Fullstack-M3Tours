@@ -1,16 +1,13 @@
 package com.M3Tours.operadores.DTO;
 
 import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-
 public class OperadorDTO {
 
     private Integer empresaId;
+
+    private Integer usuarioId;
 
     private String nombre;
 

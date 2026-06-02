@@ -19,40 +19,50 @@ import com.M3Tours.operadores.Model.Operador;
 import com.M3Tours.operadores.Service.OperadorService;
 
 @RestController
-@RequestMapping("/api/operadores")
+@RequestMapping("/api/v1/operadores")
 public class OperadorController {
 
     @Autowired
-    private OperadorService operadorService;
+    private OperadorService service;
 
     @GetMapping
-    public ResponseEntity<List<Operador>> listarTodos() {
-        return ResponseEntity.ok(operadorService.listarTodos());
+    public ResponseEntity<?> findAll() {
+        if (service.findAll().isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay operadores en este momento");
+        }
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Operador> buscarPorId(@PathVariable Integer id) {
-        return operadorService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> buscarPorId(@PathVariable Integer id) {
+        if (service.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe operador con id '" + id + "'");
+        }
+        return ResponseEntity.ok(service.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Operador> crear(@RequestBody OperadorDTO dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(operadorService.crear(dto));
+    public ResponseEntity<?> crear(@RequestBody OperadorDTO DTO) {
+        if (!service.save(DTO)){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa o Usuario no encontrado");
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(DTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Operador> actualizar(@PathVariable Integer id, @RequestBody OperadorDTO dto) {
-        return operadorService.actualizar(id, dto)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> actualizar(@PathVariable Integer id, @RequestBody OperadorDTO DTO) {
+        if (service.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe operador con id '" + id + "'");
+        }
+        return ResponseEntity.ok(service.update(id, DTO));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
-        return operadorService.eliminar(id)
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.notFound().build();
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
+        if (service.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe operador con id '" + id + "'");
+        }
+        return ResponseEntity.ok(service.delete(id));
     }
 }

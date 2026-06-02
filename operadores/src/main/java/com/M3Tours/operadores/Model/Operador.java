@@ -26,6 +26,9 @@ public class Operador {
     @Column(name = "empresa_id")
     private Integer empresaId;
 
+    @Column(name = "usuario_id", unique=true)
+    private Integer usuarioId;
+    
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
