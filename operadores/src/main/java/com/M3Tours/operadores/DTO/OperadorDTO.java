@@ -1,7 +1,7 @@
 package com.M3Tours.operadores.DTO;
 
-import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -9,16 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class OperadorDTO {
-
+    private Integer id;
     private Integer empresaId;
-
-    private String nombre;
-
-    private String apellido;
-
-    private String rut;
-
-    private String email;
-
+    private Integer usuarioId;
     private String telefono;
 }

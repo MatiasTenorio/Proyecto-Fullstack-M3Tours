@@ -1,7 +1,9 @@
 package com.M3Tours.operadores.Model;
 
 import java.time.LocalDateTime;
+
 import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +27,9 @@ public class Operador {
 
     @Column(name = "empresa_id")
     private Integer empresaId;
+
+    @Column(name = "usuario_id")
+    private Integer usuarioId;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
