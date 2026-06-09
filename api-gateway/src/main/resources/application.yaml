@@ -1,0 +1,60 @@
+server:
+  port: 7777
+
+spring:
+  application:
+    name: api-gateway
+  
+  cloud:
+    gateway:
+      mvc:
+        routes: 
+          - id: usuarios
+            uri: http://localhost:8080
+            predicates:
+              - Path=/api/v1/usuarios/**
+
+          - id: empresas
+            uri: http://localhost:8081
+            predicates:
+              - Path=/api/v1/empresas/**
+          
+          - id: operadores
+            uri: http://localhost:8082
+            predicates:
+              - Path=/api/operadores/**
+          
+          - id: tour
+            uri: http://localhost:8083
+            predicates:
+              - Path=/api/v1/tours/**
+
+          - id: reserva
+            uri: http://localhost:8084
+            predicates:
+              - Path=/api/v1/reservas/**
+
+          - id: pago
+            uri: http://localhost:8085
+            predicates:
+              - Path=/api/v1/pagos/**
+
+          - id: detallepago
+            uri: http://localhost:8086
+            predicates:
+              - Path=/api/v1/detalle-pagos/** 
+          
+          - id: destinos
+            uri: http://localhost:8087
+            predicates:
+              - Path=/api/destinos/**
+      
+          - id: categoria
+            uri: http://localhost:8088
+            predicates:
+              - Path=/api/categorias/**
+          
+          - id: itinerarios
+            uri: http://localhost:8089
+            predicates:
+              - Path=/api/itinerarios/**
