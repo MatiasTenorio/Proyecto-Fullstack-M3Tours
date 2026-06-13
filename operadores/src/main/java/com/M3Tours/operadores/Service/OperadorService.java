@@ -40,9 +40,21 @@ public class OperadorService {
         return repository.findById(id);
     }
 
+    public Optional<Operador> findByNombre(String nombre) {
+        return repository.findByNombre(nombre);
+    }
+
+    public Optional<Operador> findByRut(String rut) {
+        return repository.findByRut(rut);
+    }
+
+    public Optional<Operador> findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
     public Boolean save(OperadorDTO operadorDTO) {
         UsuarioDTO usuario = webClientUsuarios.get()
-                .uri("/usuarios/{id}", operadorDTO.getUsuarioId(), operadorDTO.getNombre()) 
+                .uri("/usuarios/{id}", operadorDTO.getUsuarioId()) 
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, response -> 
                     Mono.error(new RuntimeException("Usuario no encontrado")))
@@ -64,26 +76,26 @@ public class OperadorService {
 
         Operador operador = new Operador();
         operador.setEmpresaId(operadorDTO.getEmpresaId());
-        operador.setNombre(operadorDTO.getNombre());
-        operador.setApellido(operadorDTO.getApellido());
-        operador.setRut(operadorDTO.getRut());
-        operador.setEmail(operadorDTO.getEmail());
+        operador.setNombre(usuario.getNombre());
+        operador.setApellido(usuario.getApellido());
+        operador.setRut(usuario.getRut());
+        operador.setEmail(usuario.getEmail());
         operador.setTelefono(operadorDTO.getTelefono());
         repository.save(operador);
         return true;
     }
 
-    public Optional<Operador> update(Integer id, OperadorDTO dto) {
-        return repository.findById(id).map(operador -> {
-            operador.setEmpresaId(dto.getEmpresaId());
-            operador.setNombre(dto.getNombre());
-            operador.setApellido(dto.getApellido());
-            operador.setRut(dto.getRut());
-            operador.setEmail(dto.getEmail());
-            operador.setTelefono(dto.getTelefono());
-            return repository.save(operador);
-        });
+    public boolean update(Integer id, OperadorDTO dto) {
+    if(repository.findById(id).isEmpty()){
+        return false;
     }
+    Operador operador = repository.findById(id).get();
+    operador.setEmpresaId(dto.getEmpresaId());
+    operador.setUsuarioId(dto.getUsuarioId());
+    operador.setTelefono(dto.getTelefono());
+    repository.save(operador);
+    return true;
+}
 
     public boolean delete(Integer id) {
         if (repository.existsById(id)) {

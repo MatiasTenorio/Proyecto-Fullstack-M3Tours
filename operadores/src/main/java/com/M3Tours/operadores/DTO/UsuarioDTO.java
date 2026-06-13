@@ -8,10 +8,10 @@ import lombok.Data;
 public class UsuarioDTO {
     private Integer id;
     private String usuario;
-    private String nombreUsuario;
-    private String apellidoUsuario;
-    private String emailUsuario;
-    private String rutUsuario;
-    private String pswUsuario;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private String rut;
+    private String psw;
     private LocalDateTime fechaRegistro;
 }
