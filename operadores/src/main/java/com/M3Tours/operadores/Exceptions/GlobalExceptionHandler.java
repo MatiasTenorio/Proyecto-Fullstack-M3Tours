@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
     
-    @ExceptionHandler(NoResourceFoundException.class)
+    @ExceptionHandler(NoResourceFoundException.class) // 404 - Datos no encontrados
     public ResponseEntity<ErrorResponse> handleNoResourceFound(NoResourceFoundException ex, HttpServletRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND; 
         log.warn("Ruta o recurso estático no encontrado");
@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(error);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class) // 400 - Datos invallidos
     public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex) {
         String detalle = ex.getBindingResult()
             .getFieldErrors()
@@ -53,7 +53,7 @@ public class GlobalExceptionHandler {
         .body(error);
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(Exception.class) // 500 - Excepción generica
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex, HttpServletRequest request) {
         log.warn("Fallo Generico en la aplicacion");
         ErrorResponse error = new ErrorResponse();
