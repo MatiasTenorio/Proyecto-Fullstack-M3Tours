@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex, HttpServletRequest request) {
         log.warn("Fallo Generico en la aplicacion");
         ErrorResponse error = new ErrorResponse();
-        error.setMensaje("Errores interno del servidor");
+        error.setMensaje("Error interno del servidor");
         error.setDetalle(ex.getMessage());
         error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         error.setTimeStamp(LocalDateTime.now());

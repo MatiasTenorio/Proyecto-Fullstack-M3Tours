@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.M3Tours.operadores.DTO.LoginJWTDTO;
 import com.M3Tours.operadores.DTO.ResponseDTO;
-import com.M3Tours.operadores.Security.AuthService;
+import com.M3Tours.operadores.Service.AuthService;
 
 @RestController
 @RequestMapping("/auth")
