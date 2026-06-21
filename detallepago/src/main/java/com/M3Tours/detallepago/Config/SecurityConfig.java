@@ -1,4 +1,4 @@
-package com.M3Tours.operadores.Config;
+package com.M3Tours.detallepago.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.M3Tours.operadores.Security.JwtAuthorizationFilter;
+import com.M3Tours.detallepago.Security.JwtAuthorizationFilter;
 
 @Configuration
 @EnableWebSecurity
