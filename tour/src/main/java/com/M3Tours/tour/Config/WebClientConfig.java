@@ -13,6 +13,7 @@ public class WebClientConfig {
 
     @Bean 
     public WebClient WebClientOperador(WebClient.Builder builder) {
-        return builder.baseUrl("http://localhost:8083/api/v1").build(); // Puerto del Micro de Paciente
+        return builder.baseUrl("http://localhost:8082/api/v1").build();
     }
+
 }
