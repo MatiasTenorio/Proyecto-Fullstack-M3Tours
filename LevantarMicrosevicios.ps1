@@ -13,7 +13,8 @@ $microservicios = @(
 
 # NUEVO: Lista de microservicios cuyos errores no detendrán la cola
 $ignorarErroresEn = @(
-    "operadores"
+    "pago",
+    "itinerarios"
 )
 
 $procesosExitosos = @()
