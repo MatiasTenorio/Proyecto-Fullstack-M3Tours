@@ -1,50 +1,63 @@
 package com.M3Tours.categoria.Controller;
 
-import com.M3Tours.categoria.DTO.CategoriaDTO;
-import com.M3Tours.categoria.Model.Categoria;
-import com.M3Tours.categoria.Service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.M3Tours.categoria.DTO.CategoriaDTO;
+import com.M3Tours.categoria.Service.CategoriaService;
 
 @RestController
-@RequestMapping("/api/categorias")
+@RequestMapping("/api/v1/categorias")
 public class CategoriaController {
 
     @Autowired
-    private CategoriaService categoriaService;
+    private CategoriaService service;
 
-    @GetMapping
-    public ResponseEntity<List<Categoria>> listarTodos() {
-        return ResponseEntity.ok(categoriaService.listarTodos());
+    @GetMapping("")
+    public ResponseEntity<?> findAll() {
+        if (service.findAll().isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay categorias en este momento");
+        }
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Categoria> buscarPorId(@PathVariable Integer id) {
-        return categoriaService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> buscarPorId(@PathVariable Integer id) {
+        if (service.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe categoria con id '" + id + "'");
+        }
+        return ResponseEntity.ok(service.findById(id));
     }
 
-    @PostMapping
-    public ResponseEntity<Categoria> crear(@RequestBody CategoriaDTO dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaService.crear(dto));
+    @PostMapping("")
+    public ResponseEntity<?> crear(@RequestBody CategoriaDTO DTO) {
+        service.save(DTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Categoria creada con exito!");
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Categoria> actualizar(@PathVariable Integer id, @RequestBody CategoriaDTO dto) {
-        return categoriaService.actualizar(id, dto)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody CategoriaDTO DTO) {
+        if (!service.update(id, DTO)){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe categoria con id '" + id + "'");
+        }
+        return ResponseEntity.ok("Categoria actualizada con exito!");
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
-        return categoriaService.eliminar(id)
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.notFound().build();
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
+        if (service.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe categoria con id '" + id + "'");
+        }
+        service.delete(id);
+        return ResponseEntity.ok("Categoria eliminada exitosamente");
     }
 }
