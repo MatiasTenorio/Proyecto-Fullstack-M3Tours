@@ -6,13 +6,15 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class WebClientConfig {
+    
     @Bean
     public WebClient.Builder webClientBuilder() {
         return WebClient.builder();
     }
 
-    @Bean// anotacion para 
+    @Bean(name = "WebClientTours") 
     public WebClient webClientTours(WebClient.Builder builder) {
-        return builder.baseUrl("http://localhost:8084/api/v1").build(); // Puerto del Micro de Paciente
+
+        return builder.baseUrl("http://localhost:8083/api/v1").build(); 
     }
 }
