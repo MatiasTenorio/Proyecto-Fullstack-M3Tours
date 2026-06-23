@@ -15,7 +15,7 @@ public class DestinoController {
     @Autowired
     private DestinoService service;
 
-    @GetMapping("")
+    @GetMapping // GET ALL
     public ResponseEntity<?> findAll() {
         if (service.findAll().isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay destinos en este momento");
@@ -23,7 +23,7 @@ public class DestinoController {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // GET BY ID
     public ResponseEntity<?> buscarPorId(@PathVariable Integer id) {
         if (service.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe destino con id '" + id + "'");
@@ -31,13 +31,13 @@ public class DestinoController {
         return ResponseEntity.ok(service.findById(id));
     }
 
-    @PostMapping("")
+    @PostMapping("") // POST DESTINO
     public ResponseEntity<?> crear(@RequestBody DestinoDTO DTO) {
         service.save(DTO);
         return ResponseEntity.status(HttpStatus.CREATED).body("Destino creado con exito!");
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}") // UPDATE DESTINO
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody DestinoDTO DTO) {
         if (!service.update(id, DTO)){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe destino con id '" + id + "'");
@@ -45,7 +45,7 @@ public class DestinoController {
         return ResponseEntity.ok("Destino actualizado con exito!");
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // DESLETE DESTINO
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         if (service.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe destino con id '" + id + "'");

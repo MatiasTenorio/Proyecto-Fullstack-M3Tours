@@ -22,7 +22,7 @@ public class CategoriaController {
     @Autowired
     private CategoriaService service;
 
-    @GetMapping("")
+    @GetMapping("") // GET ALL
     public ResponseEntity<?> findAll() {
         if (service.findAll().isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay categorias en este momento");
@@ -30,7 +30,7 @@ public class CategoriaController {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // GET BY ID
     public ResponseEntity<?> buscarPorId(@PathVariable Integer id) {
         if (service.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe categoria con id '" + id + "'");
@@ -38,13 +38,13 @@ public class CategoriaController {
         return ResponseEntity.ok(service.findById(id));
     }
 
-    @PostMapping("")
+    @PostMapping("") // POST CATEGORIA
     public ResponseEntity<?> crear(@RequestBody CategoriaDTO DTO) {
         service.save(DTO);
         return ResponseEntity.status(HttpStatus.CREATED).body("Categoria creada con exito!");
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}") // UPDATE CATEGORIA
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody CategoriaDTO DTO) {
         if (!service.update(id, DTO)){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe categoria con id '" + id + "'");
@@ -52,7 +52,7 @@ public class CategoriaController {
         return ResponseEntity.ok("Categoria actualizada con exito!");
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // DELETE CATEGORIA
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         if (service.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe categoria con id '" + id + "'");

@@ -112,6 +112,7 @@ public class TourControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
     // ====================================================================
     // GET /api/v1/tours/{id}
     // ====================================================================
@@ -281,7 +282,6 @@ public class TourControllerTest {
         // ------------------------------------------------------------
         // 1. ARRANGE
         // ------------------------------------------------------------
-        when(tourService.findByUbicacionInicial("LosMuermos")).thenReturn(Optional.empty());
 
         // ------------------------------------------------------------
         // 2. ACT & 3. ASSERT
@@ -292,7 +292,7 @@ public class TourControllerTest {
     }
 
     // ====================================================================
-    // POST /api/v1/reservas/agregar-reserva
+    // POST /api/v1/tours/agregar-tour
     // ====================================================================
 
     @Test // POST OK
@@ -350,7 +350,7 @@ public class TourControllerTest {
     }
 
     // ====================================================================
-    // DELETE /api/v1/reservas/{id}
+    // DELETE /api/v1/tours/{id}
     // ====================================================================
 
     @Test // DELETE BY ID OK 
