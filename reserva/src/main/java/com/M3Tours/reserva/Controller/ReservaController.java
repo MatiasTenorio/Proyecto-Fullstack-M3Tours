@@ -25,12 +25,12 @@ public class ReservaController {
     @Autowired
     private ReservaService service;
  
-    @GetMapping("")
+    @GetMapping // GET ALL
     public ResponseEntity<List<Reserva>> getAll() {
         return ResponseEntity.ok(service.findAll());
     }
  
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // GET BY ID
     public ResponseEntity<Reserva> getById(@PathVariable Integer id) {
         Optional<Reserva> reserva = service.findById(id);
         if (reserva.isEmpty()) {
@@ -39,7 +39,7 @@ public class ReservaController {
         return ResponseEntity.ok(reserva.get());
     }
  
-    @GetMapping("/tour/{tourId}")
+    @GetMapping("/tour/{tourId}") // GET BY TOUR_ID
     public ResponseEntity<Reserva> getByTourId(@PathVariable Integer tourId) {
         Optional<Reserva> reserva = service.findByTourId(tourId);
         if (reserva.isEmpty()) {
@@ -48,7 +48,7 @@ public class ReservaController {
         return ResponseEntity.ok(reserva.get());
     }
  
-    @PostMapping("")
+    @PostMapping("agregar-reserva") // POST RESERVA
     public ResponseEntity<String> save(@RequestBody ReservaDTO reserva) {
         Boolean save = service.save(reserva);
         if (save != true) {
@@ -58,7 +58,7 @@ public class ReservaController {
         return ResponseEntity.ok("Reserva guardada con exito!");
     }
  
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // DELETE BY ID
     public ResponseEntity<String> delete(@PathVariable Integer id) {
         boolean deleted = service.delete(id);
         if (deleted) {

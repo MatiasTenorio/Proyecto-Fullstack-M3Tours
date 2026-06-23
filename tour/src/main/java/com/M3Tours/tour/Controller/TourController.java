@@ -19,12 +19,12 @@ public class TourController {
     @Autowired
     private TourService service;
 
-    @GetMapping("")
+    @GetMapping // GET ALL
     public ResponseEntity<List<Tour>> getAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // GET BY ID
     public ResponseEntity<Tour> getById(@PathVariable Integer id) {
         Optional<Tour> tour = service.findById(id);
         if(tour.isEmpty()){
@@ -33,7 +33,7 @@ public class TourController {
         return ResponseEntity.ok(tour.get());
     }
 
-    @GetMapping("/operador/{id}")
+    @GetMapping("/operador/{id}") // GET BY OPERADOR_ID
     public ResponseEntity<Tour> getByOperadorId(@PathVariable Integer id) {
         Optional<Tour> tour = service.findByOperadorId(id);
         if(tour.isEmpty()){
@@ -42,7 +42,7 @@ public class TourController {
         return ResponseEntity.ok(tour.get());
     }
 
-    @GetMapping("/reservas/{reservas}")
+    @GetMapping("/reservas/{reservas}") // GET BY NUMERO_RESERVAS
     public ResponseEntity<Tour> getByNumeroReservas(@PathVariable int reservas) {
         Optional<Tour> tour = service.findByNumeroReservas(reservas);
         if(tour.isEmpty()){
@@ -51,7 +51,7 @@ public class TourController {
         return ResponseEntity.ok(tour.get());
     }
 
-    @GetMapping("/ubicacion/{ubicacion}")
+    @GetMapping("/ubicacion/{ubicacion}") // GET BY UBICACION_INICIAl
     public ResponseEntity<Tour> getByUbicacionInicial(@PathVariable String ubicacion) {
         Optional<Tour> tour = service.findByUbicacionInicial(ubicacion);
         if(tour.isEmpty()){
@@ -60,7 +60,7 @@ public class TourController {
         return ResponseEntity.ok(tour.get());
     }
 
-    @PostMapping("")
+    @PostMapping("/agregar-tour") // POST TOUR
     public ResponseEntity<String> save(@RequestBody TourDTO tour) {
         Boolean save = service.save(tour);
         if(save!=true){
@@ -70,7 +70,7 @@ public class TourController {
         return ResponseEntity.ok("Tour guardado con exito!");
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // DELETE BY ID
     public ResponseEntity<String> delete(@PathVariable Integer id) {
         boolean deleted = service.delete(id);
         if (deleted) {

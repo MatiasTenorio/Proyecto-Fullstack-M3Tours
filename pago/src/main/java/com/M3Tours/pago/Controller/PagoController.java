@@ -24,12 +24,12 @@ public class PagoController {
     @Autowired
     private PagoService service;
 
-    @GetMapping("")
+    @GetMapping("") // GET ALL
     public ResponseEntity<List<Pago>> getAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // GET BY ID
     public ResponseEntity<?> getById(@PathVariable Integer id) {
         Optional<Pago> pago = service.findById(id);
         
@@ -39,7 +39,7 @@ public class PagoController {
         return ResponseEntity.ok(pago.get());
     }
 
-    @GetMapping("/usuario/{id}")
+    @GetMapping("/usuario/{id}") // GET BY USUARIO_ID
     public ResponseEntity<?> getByUserId(@PathVariable Integer id) {
         Optional<Pago> pago = service.findByUserId(id);
 
@@ -49,7 +49,7 @@ public class PagoController {
         return ResponseEntity.ok(pago.get());
     }
 
-    @GetMapping("/reserva/{id}")
+    @GetMapping("/reserva/{id}") // GET BY RESERVA_ID
     public ResponseEntity<?> getByReservaId(@PathVariable Integer id) {
         Optional<Pago> pago = service.findByReservaId(id);
 
@@ -59,7 +59,7 @@ public class PagoController {
         return ResponseEntity.ok(pago.get());
     }
 
-    @PostMapping("")
+    @PostMapping("/ejecutar-pago") // POST PAGO
     public ResponseEntity<String> save(@RequestBody PagoDTO pago) {
         Boolean save = service.save(pago);
         if(save!=true){

@@ -24,12 +24,12 @@ public class DetallePagoController {
     @Autowired
     private DetallePagoService service;
 
-    @GetMapping("")
+    @GetMapping // GET ALL
     public ResponseEntity<List<DetallePago>> getAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // GET BY ID
     public ResponseEntity<DetallePago> getById(@PathVariable Integer id) {
         Optional<DetallePago> detallePago = service.findById(id);
         if (detallePago.isEmpty()) {
@@ -38,7 +38,7 @@ public class DetallePagoController {
         return ResponseEntity.ok(detallePago.get());
     }
 
-    @GetMapping("/boleta/{numeroBoleta}")
+    @GetMapping("/boleta/{numeroBoleta}") // GET BY NUMERO_BOLETA
     public ResponseEntity<DetallePago> getByNumeroBoleta(@PathVariable String numeroBoleta) {
         Optional<DetallePago> detallePago = service.findByNumeroBoleta(numeroBoleta);
         if (detallePago.isEmpty()) {
@@ -47,7 +47,7 @@ public class DetallePagoController {
         return ResponseEntity.ok(detallePago.get());
     }
 
-    @GetMapping("/tipo-pago/{tipoPago}")
+    @GetMapping("/tipo-pago/{tipoPago}") // GET BY TIPO_PAGO
     public ResponseEntity<DetallePago> getByTipoPago(@PathVariable String tipoPago) {
         Optional<DetallePago> detallePago = service.findByTipoPago(tipoPago);
         if (detallePago.isEmpty()) {
@@ -56,7 +56,7 @@ public class DetallePagoController {
         return ResponseEntity.ok(detallePago.get());
     }
 
-    @GetMapping("/estado/{estado}")
+    @GetMapping("/estado/{estado}") // GET BY ESTADO
     public ResponseEntity<DetallePago> getByEstado(@PathVariable String estado) {
         Optional<DetallePago> detallePago = service.findByEstado(estado);
         if (detallePago.isEmpty()) {
@@ -65,7 +65,7 @@ public class DetallePagoController {
         return ResponseEntity.ok(detallePago.get());
     }
 
-    @GetMapping("/tour/{nombreTour}")
+    @GetMapping("/tour/{nombreTour}") // GET BY NOMBRE_TOUR
     public ResponseEntity<DetallePago> getByNombreTour(@PathVariable String nombreTour) {
         Optional<DetallePago> detallePago = service.findByNombreTour(nombreTour);
         if (detallePago.isEmpty()) {
@@ -74,7 +74,7 @@ public class DetallePagoController {
         return ResponseEntity.ok(detallePago.get());
     }
 
-    @PostMapping("")
+    @PostMapping("") // POST DETALLE-PAGO
     public ResponseEntity<String> save(@RequestBody DetallePagoDTO detallePago) {
         Boolean save = service.save(detallePago);
         if (save != true) {

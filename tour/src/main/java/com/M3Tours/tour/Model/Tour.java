@@ -25,6 +25,9 @@ public class Tour {
     @Column(name="operador_id")
     private Integer operadorId;
 
+    @Column(name="reserva_id")
+    private Integer reservaId;
+
     @Column(name="numero_reservas")
     private int numeroReservas;
 

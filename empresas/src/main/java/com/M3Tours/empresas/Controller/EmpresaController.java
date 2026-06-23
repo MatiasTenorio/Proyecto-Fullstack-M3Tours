@@ -19,19 +19,20 @@ import com.M3Tours.empresas.Model.Empresa;
 import com.M3Tours.empresas.Service.EmpresaService;
 
 
-
 @RestController
 @RequestMapping("/api/v1/empresas")
 public class EmpresaController {
     @Autowired
     private EmpresaService service;
 
+    // POST {EMPRESA}
     @PostMapping("/agregar-empresa")
     public ResponseEntity<String> save(@RequestBody EmpresaDTO empresa) {
         service.save(empresa);
         return ResponseEntity.ok("Empresa añadida con exito.");
     }
 
+    // DELETE BY {ID}
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Integer id) {
         if (service.delete(id)){
@@ -40,34 +41,38 @@ public class EmpresaController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con ID " + id + " No encontrada.");
     }
 
+    // GET ALL
     @GetMapping
     public ResponseEntity<List<Empresa>> getAll() {
         return ResponseEntity.ok(service.findAll());
     }
     
+    // GET BY {ID}
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id) {
         Optional<Empresa> responseService = service.findById(id);
         if (responseService.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con ID '" + id + "'' No encontrada.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con ID '" + id + "' No encontrada.");
         }
         return ResponseEntity.ok(responseService.get());
     }
 
+    // GET BY {NOMBRE}
     @GetMapping("/nombre/{nombre}")
     public ResponseEntity<?> getByNombre(@PathVariable String nombre) {
         Optional<Empresa> responseService = service.findByNombre(nombre);
         if (responseService.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con nombre '" + nombre + "'' No encontrada.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con nombre '" + nombre + "' No encontrada.");
         }
         return ResponseEntity.ok(responseService.get());
     }
 
+    // GET BY {RUT}
     @GetMapping("/rut/{rutEmpresa}")
     public ResponseEntity<?> getByRut(@PathVariable String rutEmpresa) {
         Optional<Empresa> responseService = service.findByRut(rutEmpresa);
         if (responseService.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con RUT '" + rutEmpresa + "'' No encontrada.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa con RUT '" + rutEmpresa + "' No encontrada.");
         }
         return ResponseEntity.ok(responseService.get());
     }
