@@ -12,7 +12,7 @@ public class WebClientConfig {
     }
 
     @Bean
-    public WebClient WebClienTours(WebClient.Builder builder){
+    public WebClient WebClientTours(WebClient.Builder builder){
         return builder.baseUrl("http://localhost:8083/api/v1").build();
     }
 }
