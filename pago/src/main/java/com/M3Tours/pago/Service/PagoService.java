@@ -24,10 +24,10 @@ public class PagoService {
     @Autowired
     private PagoRepository repository;
     @Autowired
-    @Qualifier("WebClienteUsuarios")
+    @Qualifier("WebClientUsuarios")
     private WebClient webClienteUsuarios;
     @Autowired
-    @Qualifier("WebClienteReservas")
+    @Qualifier("WebClientReservas")
     private WebClient webClienteReservas;
 
     public List<Pago> findAll(){

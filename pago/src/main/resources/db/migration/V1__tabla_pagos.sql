@@ -4,7 +4,7 @@ CREATE TABLE pagos (
     usuario_id          Integer         NOT NULL,
     reserva_id          Integer         NOT NULL,
     costo               DOUBLE          NOT NULL,
-    fecha_pago          DATE,
-    fecha_emision       DATE            DEFAULT CURRENT_DATE,
+    fecha_pago      DATE DEFAULT (CURRENT_DATE),
+    fecha_emision   DATE DEFAULT (CURRENT_DATE),
     primary key (id)
 );

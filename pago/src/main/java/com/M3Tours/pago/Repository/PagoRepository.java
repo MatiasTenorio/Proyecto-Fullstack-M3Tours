@@ -14,7 +14,7 @@ public interface PagoRepository extends JpaRepository<Pago, Integer>{
     @Query(value="Select p from pago p orden_compra= :ordenCompra", nativeQuery = true)
     Optional<Pago> findByOrdenComrpa(Integer ordenComrpa);
 
-    Optional<Pago> findByUserId(Integer id);
+    Optional<Pago> findByUsuarioId(Integer id);
 
     Optional<Pago> findByReservaId(Integer id);
 
