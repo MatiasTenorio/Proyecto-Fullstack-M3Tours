@@ -24,18 +24,18 @@ public class PagoService {
     @Autowired
     private PagoRepository repository;
     @Autowired
-    @Qualifier("WebClientUsuarios")
-    private WebClient webClientUsuarios;
+    @Qualifier("WebClienteUsuarios")
+    private WebClient webClienteUsuarios;
     @Autowired
-    @Qualifier("WebClientReservas")
-    private WebClient webClientReservas;
+    @Qualifier("WebClienteReservas")
+    private WebClient webClienteReservas;
 
     public List<Pago> findAll(){
         return repository.findAll();
     }
     
     public boolean save(PagoDTO pagoDTO) {
-        UsuarioDTO usuario = webClientUsuarios.get()
+        UsuarioDTO usuario = webClienteUsuarios.get()
                 .uri("/usuarios/{id}", pagoDTO.getUsuarioId()) 
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, response -> 
@@ -45,7 +45,7 @@ public class PagoService {
         if (usuario == null) {
             return false;
         }
-        ReservaDTO reserva = webClientReservas.get()
+        ReservaDTO reserva = webClienteReservas.get()
                 .uri("/reservas/{id}", pagoDTO.getReservaId())
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, response -> 

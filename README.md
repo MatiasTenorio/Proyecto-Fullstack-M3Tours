@@ -19,7 +19,7 @@ tipo(alcance): mensaje corto y claro
 
 - feat (Feature): Añadieron una nueva funcionalidad o característica.
 - fix: Arreglaron un error o bug.
-- chore: Tareas de mantenimiento (ej; actualizar dependencias, configurar el proyecto) que no cambian el código de la aplicación para el usuario.
+- chore: Tareas de mantenimiento (ej. actualizar dependencias, configurar el proyecto) que no cambian el código de la aplicación para el usuario.
 - docs: Cambios exclusivos en la documentación (como actualizar el archivo README.md).
 - refactor: Modificaron el código para mejorarlo internamente, pero sin añadir funcionalidades nuevas ni arreglar errores.
 
